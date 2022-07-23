@@ -1,16 +1,14 @@
-package com.itheima.controller;
+package com.domain.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.itheima.common.BaseContext;
-import com.itheima.common.R;
-import com.itheima.entity.Orders;
-import com.itheima.service.OrderService;
+import com.domain.common.BaseContext;
+import com.domain.common.R;
+import com.domain.entity.Orders;
+import com.domain.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @Slf4j
@@ -49,11 +47,22 @@ public class OrderController {
      * @param page pageSize
      */
     @GetMapping("/page")
-    public R<Page> page(int page,int pageSize){
-        Page pageInfo = new Page<>();
+//    public R<Page> page(int page,int pageSize){
+//        Page pageInfo = new Page<>();
+//        LambdaQueryWrapper<Orders> queryWrapper = new LambdaQueryWrapper<>();
+//        queryWrapper.orderByDesc(Orders::getOrderTime);
+//        queryWrapper.eq(Orders::getUserId,BaseContext.getCurrentId());
+//        orderService.page(pageInfo,queryWrapper);
+//        return R.success(pageInfo);
+//    }
+    public  R<Page> page(int page,int pageSize,Long number){
+        Page pageInfo = new Page<Orders>();
         LambdaQueryWrapper<Orders> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.orderByDesc(Orders::getOrderTime);
         queryWrapper.eq(Orders::getUserId,BaseContext.getCurrentId());
+        if (number != null){
+        queryWrapper.eq(Orders::getId,number);
+        }
         orderService.page(pageInfo,queryWrapper);
         return R.success(pageInfo);
     }
