@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="fbird:war">
+    <output-path>$PROJECT_DIR$/../../../IDM/文档/shopping-management-system-master/3#Java狙击项目/fbird/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>fbird</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="fbird.war">
+      <element id="artifact" artifact-name="fbird:war exploded" />
+    </root>
+  </artifact>
+</component>
